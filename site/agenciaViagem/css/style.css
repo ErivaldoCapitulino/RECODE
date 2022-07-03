@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-top: 64px;
+  background-color: #f0f0f0;
+}
+
+/* Inicio NavBar*/
+.nav-color {
+  background-color: #f5f5f5;
+}
+
+.box-shadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05), 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+}
+
+/*  NavBar*/
+
+/* Parte da section Realize a viagem do seu sonho */
+.viagemSonhos {
+  background-color: #7a7a7a;
+}
+
+/* Fim da parte da section Realize a viagem do seu sonho */
+
+/* Icones de contato no navbar */
+
+.bi-telephone-fill {
+  color: #b0c561;
+}
+
+.phoneNumber {
+  font-size: 12px;
+  margin-left: 2px;
+}
+
+.bi-instagram,
+.bi-facebook,
+.bi-messenger {
+  color: #b0c561;
+  margin-left: 10px;
+}
+
+/* Fim dos Icones de contato no navbar */
+
+.imagem-centralizada {
+  width: 800px;
+  height: 400px;
+}
+
+.display-5 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #141414;
+}
+
+.lead-new {
+  color: #666666;
+}
+
+/* Fotos */
+
+.centralizar {
+  text-align: center;
+}
+
+.imagem-lado {
+  width: 263px;
+  height: 175px;
+  border-radius: 4px;
+}
+
+.imagem-lado:hover {
+  width: 263px;
+  height: 175px;
+  border-radius: 4px;
+  border: 1px solid #d0ef8e;
+}
+
+/* Fim das fotos */
+
+/*  Tirar  o fixed do nav para celular*/
+@media (max-width: 767px) {
+  #home-quote .display-4 {
+    font-size: 2.5rem;
+  }
+  body {
+    padding-top: 0px;
+  }
+  .fixed-top {
+    position: relative;
+  }
+  .foto {
+    width: 80%;
+    height: 100px;
+  }
+}
+
+/* Modal escreva-se */
+
+.escrever a {
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.escrever a:hover {
+  text-decoration: none;
+  font-size: 20px;
+  color: #141414;
+}

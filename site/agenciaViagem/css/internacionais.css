@@ -1,0 +1,24 @@
+.galeria-imagem {
+  margin-bottom: 10px;
+}
+
+.imagem-descricao {
+  margin-top: 10px;
+}
+
+.galeria-imagem > img {
+  width: 500;
+  height: 300;
+}
+.galeria-imagem > a {
+  margin-bottom: 20px;
+}
+.galeria-imagem:hover {
+  border: 1px solid #d0ef8e;
+  margin-bottom: 10px;
+}
+
+.foto {
+  width: 100%;
+  height: 400px;
+}

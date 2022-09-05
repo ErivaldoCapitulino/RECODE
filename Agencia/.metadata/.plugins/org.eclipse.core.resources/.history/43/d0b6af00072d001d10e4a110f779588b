@@ -1,0 +1,144 @@
+package controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Cliente;
+import util.ConnectionFactory;
+
+public class ClienteDAO {
+
+	public void save (Cliente cliente) {
+        String sql = "INSERT INTO cliente(nome, email) VALUES (?, ?)";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            statement.setString(1, cliente.getNome());
+            statement.setString(2, cliente.getEmail());
+            statement.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao salvar a tarefa " + ex.getMessage(), ex);
+        } finally {
+            try {
+                if (statement != null) {
+                	statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
+        }
+	}
+
+	public void update(Cliente cliente) {
+
+        String sql = "UPDATE cliente SET nome = ?, email = ?, id = ?";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            statement.setString  (1, cliente.getNome());
+            statement.setString  (2, cliente.getEmail());
+            statement.setInt     (3, cliente.getId());
+
+            statement.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro em atualizar a tarefa", ex);
+        } finally {
+            try {
+                if (statement != null) {
+                	statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
+        }
+	}
+
+	public void removeById(int clienteId) {
+
+		String sql = "DELETE FROM cliente WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement statement = null;
+
+		try {
+			conn = ConnectionFactory.getConnection();
+			statement = conn.prepareStatement(sql);
+			statement.setInt(1, clienteId);
+			statement.execute();
+		} catch (SQLException ex) {
+			throw new RuntimeException("Erro ao deletar a tarefa", ex);
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException ex) {
+				throw new RuntimeException("Erro ao fechar a conexão", ex);
+			}
+		}
+	}
+
+	public List<Cliente> getAll() {
+		
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rset = null;
+        
+		String sql = "SELECT * FROM cliente";
+		List<Cliente> clientes = new ArrayList();
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			statement = conn.prepareStatement(sql);
+			rset = statement.executeQuery();
+			
+			while(rset.next()) {
+				Cliente cliente = new Cliente();
+				cliente.setNome(rset.getString("nome"));
+				cliente.setEmail(rset.getString("email"));
+				
+				clientes.add(cliente);
+			}
+		}catch (SQLException ex) {
+			throw new RuntimeException("Erro ao buscar os cliente ", ex);
+		}finally {
+            try {
+                if (rset != null) {
+                    rset.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
+        }
+		
+		return null;
+	}
+}

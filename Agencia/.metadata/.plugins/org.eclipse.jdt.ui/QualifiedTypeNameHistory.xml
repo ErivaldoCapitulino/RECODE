@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="util.ConnectionFactory"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="model.Telefone"/>
+    <fullyQualifiedTypeName name="model.Cliente"/>
+    <fullyQualifiedTypeName name="controller.ClienteDAO"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="model.Pacote"/>
+    <fullyQualifiedTypeName name="controller.PacoteDAO"/>
+    <fullyQualifiedTypeName name="controller.DestinoDAO"/>
+    <fullyQualifiedTypeName name="model.Destino"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="model.Endereco"/>
+    <fullyQualifiedTypeName name="controller.EnderecoDAO"/>
+    <fullyQualifiedTypeName name="controller.ReservaDAO"/>
+    <fullyQualifiedTypeName name="model.Reserva"/>
+</qualifiedTypeNameHistroy>

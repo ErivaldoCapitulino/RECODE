@@ -1,0 +1,139 @@
+package controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Cliente;
+import model.Telefone;
+import util.ConnectionFactory;
+
+public class TelefoneDAO {
+	public void save (Telefone telefone) {
+        String sql = "INSERT INTO telefone(numero) VALUES (?)";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            statement.setString(1, telefone.getNumero());
+            statement.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro ao salvar a tarefa " + ex.getMessage(), ex);
+        } finally {
+            try {
+                if (statement != null) {
+                	statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
+        }
+	}
+
+	public void update(Telefone telefone) {
+
+        String sql = "UPDATE telefone SET numero = ?" + " WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement statement = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            statement = conn.prepareStatement(sql);
+
+            statement.setString  (1, telefone.getNumero());
+            statement.execute();
+        } catch (SQLException ex) {
+            throw new RuntimeException("Erro em atualizar a tarefa", ex);
+        } finally {
+            try {
+                if (statement != null) {
+                	statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
+        }
+	}
+
+	public void removeById(int telefoneId) {
+
+		String sql = "DELETE FROM telefone WHERE id = ?";
+		Connection conn = null;
+		PreparedStatement statement = null;
+
+		try {
+			conn = ConnectionFactory.getConnection();
+			statement = conn.prepareStatement(sql);
+			statement.setInt(1, telefoneId);
+			statement.execute();
+		} catch (SQLException ex) {
+			throw new RuntimeException("Erro ao deletar a tarefa", ex);
+		} finally {
+			try {
+				if (statement != null) {
+					statement.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException ex) {
+				throw new RuntimeException("Erro ao fechar a conexão", ex);
+			}
+		}
+	}
+
+	public List<Cliente> getAll() {
+		
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rset = null;
+        
+		String sql = "SELECT * FROM telefone";
+		List<Telefone> telefones = new ArrayList<Telefone>();
+		
+		try {
+			conn = ConnectionFactory.getConnection();
+			statement = conn.prepareStatement(sql);
+			rset = statement.executeQuery();
+			
+			while(rset.next()) {
+				Telefone telefone = new Telefone();
+				telefone.setNumero(rset.getString("numero"));
+				
+				telefones.add(telefone);
+			}
+		}catch (SQLException ex) {
+			throw new RuntimeException("Erro ao buscar os cliente ", ex);
+		}finally {
+            try {
+                if (rset != null) {
+                    rset.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException("Erro ao fechar a conexão", ex);
+            }
+        }
+		
+		return null;
+	}
+}

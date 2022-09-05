@@ -1,0 +1,116 @@
+package main;
+
+import java.sql.Connection;
+import java.util.List;
+import java.util.Scanner;
+
+import controller.ClienteDAO;
+import controller.PacoteDAO;
+import controller.TelefoneDAO;
+import model.Cliente;
+import model.Pacote;
+import model.Cliente;
+import util.ConnectionFactory;
+import model.Telefone;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		int opcao = 0;
+		Cliente cliente = new Cliente();
+		Telefone telefone = new Telefone();
+		ClienteDAO cc = new ClienteDAO();
+		TelefoneDAO tc = new TelefoneDAO();
+		Scanner entrada = new Scanner(System.in);
+		Scanner entrada1 = new Scanner(System.in);
+
+		System.out.println("=========================================================");
+		System.out.println("             AGÊNCIA DE VIAGEM AGCAP                     ");
+		System.out.println("=========================================================");
+
+		do {
+			System.out.println("1 - Cadastro de contato");
+			System.out.println("2 - Excluir contato");
+			System.out.println("3 - Atualizar contato");
+			System.out.println("4 - Mostrar contatos");
+			System.out.println("5 - Buscar por ID");
+			System.out.println("6 - Cadastro de Pacote");
+			System.out.println("7 - Sair");
+			opcao = entrada.nextInt();
+
+			switch (opcao) {
+			case 1: {
+				System.out.println("===== INFORMAÇÕES PESSOAIS =====");
+				System.out.println("Digite o nome do cliente");
+				cliente.setNome(entrada1.nextLine());
+
+				System.out.println("Informe o e-mail do cliente");
+				cliente.setEmail(entrada1.nextLine());
+				cc.save(cliente);
+				break;
+			}
+
+			case 2: {
+				System.out.println("Digite o código do cliente para exclusão: ");
+				try {
+					cliente.setId(entrada.nextInt());
+					cc.removeById(cliente.getId());
+				} catch (Exception e) {
+					System.out.println("Nenhum dado para exclusão");
+				}
+
+				break;
+			}
+
+			case 3: {
+				System.out.println("Digite o código do cliente para atualizar");
+				cliente.setId(entrada.nextInt());
+
+				System.out.println("Digite o novo nome do cliente: ");
+				cliente.setNome(entrada1.nextLine());
+
+				System.out.println("Digite o novo e-mail do cliente");
+				cliente.setEmail(entrada1.nextLine());
+
+				cc.update(cliente);
+
+				break;
+			}
+
+			case 4: {
+				List<Cliente> clientes = cc.getAll();
+				System.out.println(clientes.add(cliente));
+//				for (Cliente c : clientes) {
+//					System.out.println("ID: " + c.getId());
+//					System.out.println("NOME: " + c.getNome());
+//					System.out.println("EMAIL: " + c.getEmail());
+//					System.out.println("-----------------------------------------------------");
+//				}
+				break;
+			}
+
+			case 5: {
+				System.out.println("Digite o ID para buscar: ");
+				int id = entrada.nextInt();
+				//cliente = cc.getClienteId(id);
+
+				System.out.println("NOME: " + cliente.getNome());
+				System.out.println("EMAIL: " + cliente.getEmail());
+				System.out.println("----------------------------------------------------------");
+				break;
+			}
+
+			case 6: {
+				System.out.println("Fazendo");
+				break;
+			}
+			default:
+				System.out.println("Opção Inválida:");
+			}
+
+		} while (opcao != 7);
+
+		entrada.close();
+	}
+}

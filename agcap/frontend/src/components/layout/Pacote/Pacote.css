@@ -1,0 +1,16 @@
+.centralizar {
+  text-align: center;
+}
+
+.imagem-lado {
+  width: 263px;
+  height: 175px;
+  border-radius: 4px;
+}
+
+.imagem-lado:hover {
+  width: 263px;
+  height: 175px;
+  border-radius: 4px;
+  border: 1px solid #d0ef8e;
+}
